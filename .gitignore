@@ -1,0 +1,6 @@
+**/*.sw?
+**/*.log
+db/
+build/
+node_modules/
+app/appOrganization.txt
