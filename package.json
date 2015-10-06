@@ -1,0 +1,41 @@
+{
+  "name": "0930_lyrics",
+  "version": "0.1.0",
+  "description": "single resource REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewmnelson/0930_lyrics_ng_test.git"
+  },
+  "author": "andrewmnelson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewmnelson/0930_lyrics_ng_test/issues"
+  },
+  "homepage": "https://github.com/andrewmnelson/0930_lyrics_ng_test#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.13.3",
+    "eat": "^0.1.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.7"
+  },
+  "devDependencies": {
+    "angular": "^1.4.6",
+    "angular-mocks": "^1.4.7",
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-mocha": "^2.1.3",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "mocha": "^2.3.2",
+    "webpack-stream": "^2.1.1"
+  }
+}

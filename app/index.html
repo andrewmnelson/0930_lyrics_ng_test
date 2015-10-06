@@ -18,6 +18,7 @@
 <body data-ng-app="lyricsApp">
   <main data-ng-controller="LyricsController" data-ng-init="getAll()">  <!-- maps to $scope.getAll() in ctrlr -->
     <h1>Lyrics</h1>
+    <h4 class="errorMsg">{{errorMsg}}</h4>
     <form class="newLyricForm" data-ng-submit="createLyric(newLyric)" 
           ng-show="newLyric.editing" method="POST" enctype="application/json">
       <label for "id_lyricTitle">Title: 
@@ -28,7 +29,7 @@
               data-ng-model="newLyric.author" placeholder="Anonymous"></label><br>
       <label for "id_lyricChorus">Chorus: 
         <textarea name="lyricChorus" id="id_lyricChorus" 
-              data-ng-model="newLyric.chorus" cols="60" rows="4"></textarea></label><br>
+              data-ng-model="newLyric.chorus" ng-trim="false" cols="60" rows="4"></textarea></label><br>
       <label for "id_lyricVerse">Verse: (insert blank line between stanzas)
           <textarea name="lyricVerse" id="id_lyricVerse" 
               data-ng-model="newLyric.verse" ng-trim="false" ng-list="&#10;&#10;" 
@@ -37,6 +38,7 @@
       <button type="button" data-ng-click="newLyric.editing = false">Cancel</button>
     </form>
     <button class="newLyricEdit" data-ng-hide="newLyric.editing" data-ng-click="newLyric.editing = true">Add a Lyric</button>
+
     <ul class="lyricList">
       <li data-ng-repeat="lyric in lyrics" class="{{lyric.deleteStyle}}"> <!-- maps to $scope.lyrics in JS -->
         <span data-ng-hide="lyric.editing" width="100%">
@@ -65,6 +67,7 @@
         </form>
       </li>
     </ul>
+
     <p>The lyrics server accepts and distributes JSON lyric objects in the format:</p>
     <blockquote><code>
       { title:  '',
