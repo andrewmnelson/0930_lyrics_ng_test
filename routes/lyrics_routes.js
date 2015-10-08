@@ -76,5 +76,5 @@ lyricsRouter.post('/lyrics', jsonParser, function(req, resp) {
 lyricsRouter.delete('/lyrics/:title', jsonParser, function(req, resp) {
   setTimeout(function() {
     lyricsEvents.emit('finish_delete', req, resp);
-  }, 2000);
+  }, 1000);
 });

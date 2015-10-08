@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL = 'mongodb://localhost/lyrics_test');
+mongoose.connect(process.env.MONGO_URL = 'mongodb://localhost/lyrics_dev');
 
 app.use(express.static(__dirname + '/build'));
 var lyricsRouter = require(__dirname + '/routes/lyrics_routes');
