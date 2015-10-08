@@ -1,0 +1,29 @@
+<article>
+  <p>The lyrics server accepts and distributes JSON lyric objects in the format:</p>
+  <blockquote><code>
+    { title:  '',
+      author: '',
+      chorus: '',
+      verse:  []
+    }
+  </code></blockquote>
+  <p>To contribute a lyric, POST the JSON data as described above to
+    <code>/api/lyrics</code><br>
+    The 'title' attribute is required, and at least one of 
+    'chorus' or 'verse' must be present. <br>
+    The 'verse' attribute, if supplied, consists of an array of strings. <br>
+    If 'author' is not supplied, it defaults to 'Anonymous'.</p>
+  <p>To request a lyric, GET from 
+    <code>/api/lyrics/[title]</code>
+    where [title] is the 'title' attribute of the lyric being requested.</p>
+  <p>To request all known lyrics, GET from
+    <code>/api/lyrics</code>.
+    The list of titles is supplied as an array of lyric objects.</p>
+  <p>To correct an error in an existing lyric, PUT a corrected lyric object to 
+    <code>/api/lyrics/[title]</code>
+    where [title] indicates the lyric to be corrected.  If the supplied lyric
+    object contains the 'title' attribute, it must match the title being corrected.</p>
+  <p>To delete a lyric, DELETE at
+    <code>/api/lyrics/[title]</code>
+    where [title] is the 'title' attribute of the lyric being deleted.</p>
+</article>

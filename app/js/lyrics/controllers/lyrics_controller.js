@@ -1,7 +1,8 @@
-'use strict';
+//'use strict';
 // ALWAYS USE MDN (mozilla) instead of W3C, because it's much better
 module.exports = function(app) {
-  app.controller('LyricsController', ['$scope', '$http', function($scope, $http) {
+  app.controller('LyricsController', ['$scope', 'Resource', '$http', function($scope, Resource, $http) {
+    var lyricResource = Resource('lyrics');
     $scope.errorMsg = '';
     $scope.lyrics = []; // will call ng-repeat on this object on DOM load, so it must exist
     $scope.newLyric = {};
@@ -14,13 +15,11 @@ module.exports = function(app) {
       dest.verse = src.verse;
     };
 
-    $scope.getAll = function() {  // allows us to re-instantiate DOM
-      $http.get('/api/lyrics')    // allows for Cross-Origin Resource Sharing (CORS)
-      .then(function(resp) {      //    i.e. client and server can share code
-        $scope.lyrics = resp.data; // will contain an array of lyric headers ({title, author})
+    $scope.getAll = function() {
+      lyricResource.getAll( function(err, data) {
+        if (err) return console.log(err);
+        $scope.lyrics = data; // will contain an array of lyric headers ({title, author})
         $scope.newLyric = {};
-      }, function(err) {
-        console.log(err);
       });
     };
 
@@ -69,7 +68,7 @@ module.exports = function(app) {
       $scope.cloneLyric(lyric, $scope.stashLyric);
       $scope.stashLyric = {};
       delete lyric.editing;
-    }
+    };
 
     $scope.updateLyric = function(lyric) {
       $http.put('/api/lyrics/' + lyric.title, lyric)

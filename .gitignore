@@ -4,4 +4,4 @@ db/
 build/
 node_modules/
 app/appOrganization.txt
-test/client/test_bundle.js
+**/*bundle.js

@@ -41,13 +41,13 @@ gulp.task('jshint:dev', function() {
 gulp.task('build:dev', ['jshint:dev', 'staticfiles:dev', 'webpack:dev']);
 
 gulp.task('servertests', function() {
-  return gulp.src('test/api_test/**/*_test.js', { read: false })
+  return gulp.src('./test/api_test/*_test.js', { read: false })
     .pipe(mocha({reporter: 'dot'}))
     .once('error', function() {
       process.exit(1);
     })
     .once('end', function() {
-      if (1 === this.seq.length && 'servertests' === this.seq[0]) {
+      if (1 === this.seq.length && ('servertests' === this.seq[0])) {
         process.exit();
       }
     }.bind(this));
@@ -59,7 +59,7 @@ gulp.task('karmatests', ['webpack:test'], function(done) {  // test dependencies
 
 gulp.task('watch', function() {
     gulp.watch('app/**/*.js', ['build:dev']);
-    gulp.watch('app/*.html', ['staticfiles:dev']);
+    gulp.watch('app/**/*.html', ['staticfiles:dev']);
 });
 
 gulp.task('default', ['build:dev']);

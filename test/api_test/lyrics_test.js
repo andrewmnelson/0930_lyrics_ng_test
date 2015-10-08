@@ -11,7 +11,7 @@ var lyricsURL = 'localhost:3000/api'
 
 process.env.MONGO_URL = 'mongodb://localhost/lyrics_test';
 
-var Lyric = require(__dirname + '/../models/lyric');
+var Lyric = require(__dirname + '/../../models/lyric');
 
 describe('the lyrics server', function() {
   after(function(done) {  // clean up the database for the next test run
@@ -20,6 +20,10 @@ describe('the lyrics server', function() {
       done();
     });
   });
+  it('should exist', function() {
+    expect(Lyric).not.to.eql(undefined);
+    expect(Lyric).not.to.eql(null);
+  })
   it('should have a database connection', function(done) {
     chai.request(lyricsURL)
     .get('/lyrics')

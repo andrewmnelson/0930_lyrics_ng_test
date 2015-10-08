@@ -17,7 +17,6 @@ lyricsRouter.get('/lyrics/:title', jsonParser, function(req, resp) {
       return resp.status(404).json({ msg: 'title not found' });
     }
     else {
-      console.log(data);
       resp.json(data);
     }
   });
