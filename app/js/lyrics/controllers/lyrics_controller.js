@@ -3,10 +3,17 @@
 module.exports = function(app) {
   app.controller('LyricsController', ['$scope', 'Resource', '$http', function($scope, Resource, $http) {
     var lyricResource = Resource('lyrics');
+    $scope.showUsage = false;
     $scope.errorMsg = '';
     $scope.lyrics = []; // will call ng-repeat on this object on DOM load, so it must exist
     $scope.newLyric = {};
     $scope.stashLyric = {};
+
+    $scope.toggleUsage = function() {
+      $scope.showUsage = !$scope.showUsage;
+      console.log('showUsage: ', $scope.showUsage);
+      return $scope.showUsage;
+    };
 
     $scope.cloneLyric = function(dest, src) {
       dest.title = src.title;
