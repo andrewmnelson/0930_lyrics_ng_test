@@ -17,6 +17,7 @@ lyricsRouter.get('/lyrics/:title', jsonParser, function(req, resp) {
       return resp.status(404).json({ msg: 'title not found' });
     }
     else {
+      console.log(data);
       resp.json(data);
     }
   });
@@ -76,5 +77,5 @@ lyricsRouter.post('/lyrics', jsonParser, function(req, resp) {
 lyricsRouter.delete('/lyrics/:title', jsonParser, function(req, resp) {
   setTimeout(function() {
     lyricsEvents.emit('finish_delete', req, resp);
-  }, 2000);
+  }, 1000);
 });
