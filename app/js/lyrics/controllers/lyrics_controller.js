@@ -1,7 +1,8 @@
-//'use strict';
-// ALWAYS USE MDN (mozilla) instead of W3C, because it's much better
+'use strict';  /* global module: true */ /* jshint newcap: false */
+
 module.exports = function(app) {
-  app.controller('LyricsController', ['$scope', 'Resource', '$http', function($scope, Resource, $http) {
+  app.controller('LyricsController', ['$scope', 'Resource', '$http', '$location', '$cookies',
+                  function($scope, Resource, $http, $location, $cookies) {
     var lyricResource = Resource('lyrics');
     $scope.showUsage = false;
     $scope.errorMsg = '';
@@ -9,9 +10,15 @@ module.exports = function(app) {
     $scope.newLyric = {};
     $scope.stashLyric = {};
 
+    // check that user is logged in
+    var auth = $cookies.get('eat');
+    if (!(auth && auth.length))
+      $location.path('/signup');
+
+    $http.defaults.headers.common.token = auth;
+
     $scope.toggleUsage = function() {
       $scope.showUsage = !$scope.showUsage;
-      console.log('showUsage: ', $scope.showUsage);
       return $scope.showUsage;
     };
 
@@ -79,8 +86,8 @@ module.exports = function(app) {
 
     $scope.updateLyric = function(lyric) {
       $http.put('/api/lyrics/' + lyric.title, lyric)
-      .then(function(resp) {
-        delete lyric.editing;
+      .then(function() {      // all processing happened in the PUT -
+        delete lyric.editing; // just change the editing mode here
       }, function(err) {
         console.log(err); // leave editing up so user can save data elsewise
       });

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(app) {
   app.directive('lyricEdit', function() {
     return {
@@ -14,6 +16,6 @@ module.exports = function(app) {
       controller: function($scope) {
         console.log($scope.save);
       }
-    }
+    };
   });
 };

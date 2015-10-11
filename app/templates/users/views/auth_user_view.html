@@ -1,0 +1,18 @@
+<section>
+  <h3>{{signupHeaderText}}</h3>
+  <form name="userForm" class="userForm" ng-submit="sendToServer(user)">
+    <label>User name
+      <input type="text" data-ng-model="user.username">
+    </label><br>
+    <label>Password
+      <input type="password" data-ng-model="user.password">
+    </label><br>
+    <label data-ng-if="confirmPassword">Confirm Password
+      <input type="password" data-ng-model="user.confirmPassword">
+    </label>
+    <button type="submit" data-ng-disabled="disableSubmit(user)">{{buttonText}}</button>
+    <p data-ng-if="!passwordMatch(user)">Passwords do not match!</p>
+  </form>
+
+  <button data-ng-click="changePlaces()">{{changePlacesText}}</button>
+</section>
