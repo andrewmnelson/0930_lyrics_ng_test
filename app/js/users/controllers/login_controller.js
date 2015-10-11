@@ -7,6 +7,7 @@ module.exports = function(app) {
     $scope.user = {};
     $scope.changePlacesText = 'Or Create an Account';
     $scope.confirmPassword = false;
+    $scope.passwordMatch = function() { return true; };
 
     $scope.changePlaces = function() {
       $location.path('/signup');
